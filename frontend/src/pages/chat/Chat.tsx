@@ -7,7 +7,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from "rehype-raw"; 
 
 import styles from "./Chat.module.css";
-import Azure from "../../assets/Azure.svg";
+import DotnetBot from "../../assets/Dotnet-Bot.svg";
 
 import {
     ChatMessage,
@@ -32,15 +32,13 @@ const Chat = () => {
     const abortFuncs = useRef([] as AbortController[]);
     const [showAuthMessage, setShowAuthMessage] = useState<boolean>(true);
     
-    const getUserInfoList = async () => {
-        const userInfoList = await getUserInfo();
-        if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
-            setShowAuthMessage(true);
-        }
-        else {
-            setShowAuthMessage(false);
-        }
-    }
+    const getUserInfoList = async () => { 
+        // removed requirement for authentication
+        // const userInfoList = await getUserInfo(); 
+        // if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") { 
+        // setShowAuthMessage(true); // } 
+        // else { //     setShowAuthMessage(false); // } 
+        setShowAuthMessage(false); }
 
     const makeApiRequest = async (question: string) => {
         lastQuestionRef.current = question;
@@ -169,12 +167,12 @@ const Chat = () => {
                         {!lastQuestionRef.current ? (
                             <Stack className={styles.chatEmptyState}>
                                 <img
-                                    src={Azure}
+                                    src={DotnetBot}
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
-                                <h1 className={styles.chatEmptyStateTitle}>Start chatting</h1>
-                                <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured to answer your questions</h2>
+                                <h1 className={styles.chatEmptyStateTitle}>DNCEng Chatbot</h1>
+                                <h2 className={styles.chatEmptyStateSubtitle}>Get your .NET Engineering Services Documentation Questions Answered</h2>
                             </Stack>
                         ) : (
                             <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? "40px" : "0px"}} role="log">
@@ -247,7 +245,7 @@ const Chat = () => {
                                 >
                                 <BroomRegular
                                     className={styles.clearChatBroom}
-                                    style={{ background: isLoading || answers.length === 0 ? "#BDBDBD" : "radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)", 
+                                    style={{ background: isLoading || answers.length === 0 ? "#BDBDBD" : "radial-gradient(109.81% 107.82% at 100.1% 90.19%, #7014E8 33.63%, #4931DE 70.31%, #512BD4 100%)", 
                                             cursor: isLoading || answers.length === 0 ? "" : "pointer"}}
                                     aria-hidden="true"
                                 />
